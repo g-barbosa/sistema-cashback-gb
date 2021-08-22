@@ -7,7 +7,7 @@ export class CompraRepository implements ICompraRepository {
         await knex('compras').insert(compra)
     }
 
-    async listar(cpf: string): Promise<Compra[]> {
-      return await knex('compras')
+    async listar(id: string): Promise<Compra[]> {
+      return await knex('compras').where('revendedorId', id)
     }
 }

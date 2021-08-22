@@ -31,8 +31,8 @@ export class CompraService implements ICompraService {
         return ok('Compra cadastrada com sucesso')
     }
 
-    async listar(cpf: any) {
-        const compras = await this.repository.listar(cpf);
+    async listar(revendedorId: any) {
+        const compras = await this.repository.listar(revendedorId);
 
         let somaTotal = 0;
         let totalVendas = 0;
@@ -41,7 +41,7 @@ export class CompraService implements ICompraService {
             somaTotal += compra.valor;
         }
 
-        const cashbackTotal = this.cashbackService.receberPorcentagemCashback(somaTotal);
+        const porcentagemCashback = this.cashbackService.receberPorcentagemCashback(somaTotal);
 
         const listaCompras: CompraResponse[] = compras.map((compra) => ({
             id: compra.id,
@@ -49,12 +49,13 @@ export class CompraService implements ICompraService {
             valor: compra.valor,
             data: compra.data,
             status: compra.status,
-            porcentagemCashback: cashbackTotal,
-            cashback: (compra.valor * cashbackTotal) / 100,
+            porcentagemCashback: porcentagemCashback,
+            cashback: (compra.valor * porcentagemCashback) / 100,
         }))
 
         const comprasResponse: ComprasResponse = {
-            cashback: cashbackTotal,
+            porcentagemCashback: porcentagemCashback,
+            cashback: (somaTotal * porcentagemCashback) / 100,
             vendaTotal: somaTotal,
             quantidadeVendas: totalVendas,
             compras: listaCompras,

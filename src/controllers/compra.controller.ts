@@ -26,8 +26,8 @@ export class CompraController {
 
     async listar(request: RequestHelper, response: Response): Promise<Response> {
       try {
-        const { cpf } = request;
-        const compras = await this.service.listar(cpf);
+        const { revendedorId } = request;
+        const compras = await this.service.listar(revendedorId);
         return response.status(200).send(compras)
       } catch(err){
         logger.error(err)
