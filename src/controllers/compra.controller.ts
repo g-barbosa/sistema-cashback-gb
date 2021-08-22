@@ -16,7 +16,7 @@ export class CompraController {
             
             const resultado = await this.service.cadastrar({ codigo, valor, cpf, data }, cpfLogado!)
 
-            return response.status(resultado.statusCode).send(resultado.body)
+            return response.status(resultado.statusCode).send(resultado)
 
         } catch(err){
           logger.error(err)
@@ -29,7 +29,7 @@ export class CompraController {
         const { revendedorId } = request;
         const { mes } = request.query;
         const resultado = await this.service.listar(revendedorId, mes);
-        return response.status(resultado.statusCode).send(resultado.body)
+        return response.status(resultado.statusCode).send(resultado)
       } catch(err){
         logger.error(err)
         return response.status(500).json({ message: 'Houve um erro interno no servidor' })
@@ -41,7 +41,7 @@ export class CompraController {
         const { cpf } = request;
 
         const resultado = await this.service.cashbackAcumulado(cpf);
-        return response.status(resultado.statusCode).send(resultado.body)
+        return response.status(resultado.statusCode).send(resultado)
       } catch(err){
         logger.error(err)
         return response.status(500).json({ message: 'Houve um erro interno no servidor' })

@@ -14,7 +14,7 @@ export class AutenticacaoController {
             
             const resultado = await this.service.login(email, senha)
 
-            return response.status(resultado.statusCode).send(resultado.body)
+            return response.status(resultado.statusCode).send(resultado)
 
         } catch(err){
             logger.error(err)
