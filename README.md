@@ -43,5 +43,4 @@ yarn test
 ~~~
 
 ## Swagger
-To see swagger documentation access: http:localhost:8000/swagger
 Para ver a documentação desta API, acesse: http://localhost:3000/docs/
