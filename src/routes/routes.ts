@@ -14,6 +14,10 @@ routes.post('/api/autenticacao', (request, response) => {
     #swagger.parameters['Dados do revendedor'] = {
         in: 'body',
         type: 'object',
+        schema: {
+            $email: 'email@email.com',
+            $senha: 'senha_segura'
+        }
     }
     */
     return autenticacaoController.login(request, response)
@@ -27,6 +31,12 @@ routes.post('/api/revendedores', (request, response) => {
     #swagger.parameters['Dados do revendedor'] = {
         in: 'body',
         type: 'object',
+        schema: {
+            $nome: 'Jorge',
+            $cpf: "12345678900",
+            $email: 'email@email.com',
+            $senha: 'senha_segura'
+        }
     }
     */
     return revendedorController.cadastrar(request, response)
@@ -40,6 +50,12 @@ routes.post('/api/compras', autenticacao, (request, response) => {
     #swagger.parameters['Dados da compra'] = {
         in: 'body',
         type: 'object',
+        schema: {
+            $codigo: 'abc',
+            $valor: 10,
+            $cpf: '12345678900',
+            $data: '2021/08/19'
+        }
     }
     #swagger.security = [{
         "apiKeyAuth": []

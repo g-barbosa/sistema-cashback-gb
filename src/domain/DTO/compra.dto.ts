@@ -2,7 +2,7 @@ export interface CompraDTO {
   id?: string;
   codigo: string;
   valor: number;
-  data?: string;
+  data: string;
   status?: string;
   cpf: string;
 }

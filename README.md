@@ -37,6 +37,12 @@ Rode o seguinte comando para iniciar as migrations:
 yarn knex:migrate
 ~~~
 
+## Iniciar o servidor
+Após realizar todas as instruções acima, rode o seguinte comando no seu terminal:
+~~~
+yarn start
+~~~
+
 ## Testes
 Rode o seguinte comando para rodar os testes:
 ~~~

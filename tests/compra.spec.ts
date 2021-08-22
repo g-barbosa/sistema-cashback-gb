@@ -62,7 +62,8 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10, 
-      cpf: '12345678900'
+      cpf: '12345678900',
+      data: '2021/12/19'
     }
 
     const cpf: string ='12345678900';
@@ -84,7 +85,8 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10, 
-      cpf: '15350946056'
+      cpf: '15350946056',
+      data: '2021/12/19'
     }
 
     const cpf: string ='15350946056';
@@ -106,7 +108,8 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10, 
-      cpf: '12345678900'
+      cpf: '12345678900',
+      data: '2021/12/19'
     }
 
     const cpf: string ='12345678900';
@@ -127,7 +130,8 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10, 
-      cpf: '12345678901'
+      cpf: '12345678901',
+      data: '2021/12/19'
     }
 
     const cpf: string ='12345678900';
@@ -144,7 +148,8 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10,
-      cpf: '12345678900'
+      cpf: '12345678900',
+      data: '2021/12/19'
     }
 
     const cpf: string ='12345678900';
@@ -160,7 +165,8 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10, 
-      cpf: 'abc'
+      cpf: 'abc',
+      data: '2021/12/19'
     }
 
     const cpf: string ='abc';
@@ -177,7 +183,8 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10, 
-      cpf: '12345678900'
+      cpf: '12345678900',
+      data: '2021/12/19'
     }
 
     const lista: Compra[] = [{

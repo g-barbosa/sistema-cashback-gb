@@ -12,9 +12,9 @@ export class AutenticacaoController {
         try {
             const { email, senha } = request.body
             
-            const user = await this.service.login(email, senha)
+            const resultado = await this.service.login(email, senha)
 
-            return response.status(200).send(user)
+            return response.status(resultado.statusCode).send(resultado.body)
 
         } catch(err){
             logger.error(err)

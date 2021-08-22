@@ -9,11 +9,11 @@ export class Compra {
     public status: string;
     public revendedorId: string;
 
-    constructor(props: Omit<Compra, 'id' | 'data' | 'status'>, id?: string) {
+    constructor(props: Omit<Compra, 'id' | 'status'>, id?: string) {
 
         this.codigo = props.codigo;
         this.valor = props.valor;
-        this.data = knex.fn.now();
+        this.data = props.data; // knex.fn.now();
         this.revendedorId = props.revendedorId;
         this.status = 'Em validação';
 

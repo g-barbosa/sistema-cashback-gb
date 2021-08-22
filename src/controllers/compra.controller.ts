@@ -11,12 +11,12 @@ export class CompraController {
 
     async cadastrar (request: RequestHelper, response: Response): Promise<Response> {
         try {
-            const { codigo, valor, cpf  } = request.body
+            const { codigo, valor, cpf, data  } = request.body
             const { cpf: cpfLogado } = request
             
-            await this.service.cadastrar({ codigo, valor, cpf }, cpfLogado!)
+            const resultado = await this.service.cadastrar({ codigo, valor, cpf, data }, cpfLogado!)
 
-            return response.status(200).send()
+            return response.status(resultado.statusCode).send(resultado.body)
 
         } catch(err){
           logger.error(err)
@@ -28,8 +28,8 @@ export class CompraController {
       try {
         const { revendedorId } = request;
         const { mes } = request.query;
-        const compras = await this.service.listar(revendedorId, mes);
-        return response.status(200).send(compras)
+        const resultado = await this.service.listar(revendedorId, mes);
+        return response.status(resultado.statusCode).send(resultado.body)
       } catch(err){
         logger.error(err)
         return response.status(500).json({ message: 'Houve um erro interno no servidor' })
@@ -40,8 +40,8 @@ export class CompraController {
       try {
         const { cpf } = request;
 
-        const result = await this.service.cashbackAcumulado(cpf);
-        return response.status(result.statusCode).send(result)
+        const resultado = await this.service.cashbackAcumulado(cpf);
+        return response.status(resultado.statusCode).send(resultado.body)
       } catch(err){
         logger.error(err)
         return response.status(500).json({ message: 'Houve um erro interno no servidor' })

@@ -31,24 +31,27 @@
           {
             "name": "Dados do revendedor",
             "in": "body",
+            "type": "object",
             "schema": {
               "type": "object",
               "properties": {
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "email@email.com"
                 },
                 "senha": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "senha_segura"
                 }
-              }
-            },
-            "type": "object"
+              },
+              "required": [
+                "email",
+                "senha"
+              ]
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -65,24 +68,34 @@
           {
             "name": "Dados do revendedor",
             "in": "body",
+            "type": "object",
             "schema": {
               "type": "object",
               "properties": {
                 "nome": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Jorge"
                 },
                 "cpf": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "12345678900"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "email@email.com"
                 },
                 "senha": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "senha_segura"
                 }
-              }
-            },
-            "type": "object"
+              },
+              "required": [
+                "nome",
+                "cpf",
+                "email",
+                "senha"
+              ]
+            }
           }
         ],
         "responses": {
@@ -102,27 +115,37 @@
           {
             "name": "Dados da compra",
             "in": "body",
+            "type": "object",
             "schema": {
               "type": "object",
               "properties": {
                 "codigo": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "abc"
                 },
                 "valor": {
-                  "example": "any"
+                  "type": "number",
+                  "example": 10
                 },
                 "cpf": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "12345678900"
+                },
+                "data": {
+                  "type": "string",
+                  "example": "2021/08/19"
                 }
-              }
-            },
-            "type": "object"
+              },
+              "required": [
+                "codigo",
+                "valor",
+                "cpf",
+                "data"
+              ]
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "401": {
             "description": "Unauthorized"
           },
@@ -150,9 +173,6 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "401": {
             "description": "Unauthorized"
           },

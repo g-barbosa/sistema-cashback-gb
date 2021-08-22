@@ -8,6 +8,9 @@ export class CompraRepository implements ICompraRepository {
     }
 
     async listar(id: string, mes: string): Promise<Compra[]> {
+
+      mes = mes ? mes : (new Date().getMonth() + 1).toString();
+
       return await knex('compras').where('revendedorId', id).andWhereRaw('MONTH(DATA) = ?', mes)
     }
 }
