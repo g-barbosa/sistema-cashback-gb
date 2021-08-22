@@ -1,0 +1,184 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Cashback API",
+    "version": "1.0.0",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/api/autenticacao": {
+      "post": {
+        "tags": [
+          "Autenticacao"
+        ],
+        "description": "Fazer login",
+        "parameters": [
+          {
+            "name": "Dados do revendedor",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "senha": {
+                  "example": "any"
+                }
+              }
+            },
+            "type": "object"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/revendedores": {
+      "post": {
+        "tags": [
+          "Revendedores"
+        ],
+        "description": "Registrar um revendedor",
+        "parameters": [
+          {
+            "name": "Dados do revendedor",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "cpf": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "senha": {
+                  "example": "any"
+                }
+              }
+            },
+            "type": "object"
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/compras": {
+      "post": {
+        "tags": [
+          "Compras"
+        ],
+        "description": "Registrar uma compra",
+        "parameters": [
+          {
+            "name": "Dados da compra",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "codigo": {
+                  "example": "any"
+                },
+                "valor": {
+                  "example": "any"
+                }
+              }
+            },
+            "type": "object"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Compras"
+        ],
+        "description": "Listar compras",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/cashback-acumulado": {
+      "get": {
+        "tags": [
+          "Compras"
+        ],
+        "description": "Exibir acumulado de cashback",
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {}
+}
