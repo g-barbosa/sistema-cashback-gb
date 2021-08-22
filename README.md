@@ -43,6 +43,9 @@ Após realizar todas as instruções acima, rode o seguinte comando no seu termi
 yarn start
 ~~~
 
+## Rotas
+Para as rotas de cadastro de compras, listagem e cashback acumulado, é necessário estar autenticado, passando o token jwt no header de Authorization da requisição.
+
 ## Testes
 Rode o seguinte comando para rodar os testes:
 ~~~
