@@ -191,9 +191,10 @@ describe('compra', () => {
 
     compraRepositoryMock.listar.mockResolvedValue(lista)
 
-    const cpf: string ='12345678900';
+    const cpf: string = '12345678900';
+    const mes: string = 'any_mes'
 
-    const result = await compraService.listar(cpf)
+    const result = await compraService.listar(cpf, mes)
 
     expect(result.statusCode).toBe(200);
   })

@@ -52,6 +52,11 @@ routes.get('/api/compras', autenticacao, (request, response) => {
     /*
     #swagger.tags = ['Compras']
     #swagger.description = 'Listar compras'
+    #swagger.parameters['mes'] = {
+        in: 'query',
+        type: 'string',
+        description: 'exemplo: 8'
+    }
     #swagger.security = [{
         "apiKeyAuth": []
     }]

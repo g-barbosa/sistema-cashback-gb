@@ -49,8 +49,8 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -110,6 +110,9 @@
                 },
                 "valor": {
                   "example": "any"
+                },
+                "cpf": {
+                  "example": "any"
                 }
               }
             },
@@ -138,7 +141,14 @@
           "Compras"
         ],
         "description": "Listar compras",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "mes",
+            "in": "query",
+            "type": "string",
+            "description": "exemplo: 8"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
