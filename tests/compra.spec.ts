@@ -8,6 +8,7 @@ import { CompraDTO } from '../src/domain/DTO/compra.dto'
 import { Revendedor } from '../src/domain/models/Revendedor'
 
 jest.mock('../src/repositories/implementations/revendedor.repository');
+jest.mock('../src/repositories/implementations/compra.repository')
 
 
 const CompraRepositoryMock = CompraRepository as jest.Mock<CompraRepository>
@@ -43,9 +44,9 @@ const revendedor: Revendedor = {
 
 const sutFactory = () => {
   const revendedorRepositoryMock = new RevendedorRepositoryMock() as jest.Mocked<RevendedorRepository>;
+  const compraRepositoryMock = new CompraRepositoryMock() as jest.Mocked<CompraRepository>;
   const cashbackServiceMock = new CashbackServiceMock() as jest.Mocked<CashbackService>
   const revendedorService = new RevendedorService(revendedorRepositoryMock)
-  const compraRepositoryMock = new CompraRepositoryMock() as jest.Mocked<CompraRepository>;
   const cashbackService = new CashbackService()
   const compraService = new CompraService(revendedorService, cashbackService, compraRepositoryMock)
 
@@ -61,6 +62,7 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10, 
+      cpf: '12345678900'
     }
 
     const cpf: string ='12345678900';
@@ -68,7 +70,6 @@ describe('compra', () => {
     await compraService.cadastrar(compraDTO, cpf)
 
     expect(revendedorRepositoryMock.buscarRevendedorPorCPF).toHaveBeenCalledTimes(1)
-    expect(revendedorService.buscarRevendedorPorCPF).toHaveBeenCalledTimes(1)
     expect(compraRepositoryMock.cadastrar).toHaveBeenCalledTimes(1)
 
     //expect(result.statusCode).toBe(200);
@@ -83,14 +84,14 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10, 
+      cpf: '15350946056'
     }
 
-    const cpf: string ='12345678900';
+    const cpf: string ='15350946056';
 
     await compraService.cadastrar(compraDTO, cpf)
 
     expect(revendedorRepositoryMock.buscarRevendedorPorCPF).toHaveBeenCalledTimes(1)
-    expect(revendedorService.buscarRevendedorPorCPF).toHaveBeenCalledTimes(1)
     expect(compraRepositoryMock.cadastrar).toHaveBeenCalledTimes(1)
 
     //expect(result.statusCode).toBe(200);
@@ -105,6 +106,7 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10, 
+      cpf: '12345678900'
     }
 
     const cpf: string ='12345678900';
@@ -117,12 +119,32 @@ describe('compra', () => {
     expect(result.body).toBe('Não foi possível encontrar este revendedor');
   })
 
+  it('Deve retornar erro ao cadastrar nova compra com cpf diferente do cpf logado', async () => {
+    const { compraService, revendedorRepositoryMock  } = sutFactory();
+    
+    revendedorRepositoryMock.buscarRevendedorPorCPF.mockResolvedValueOnce(null!)
+
+    const compraDTO: CompraDTO = {
+      codigo: 'any_codigo',
+      valor: 10, 
+      cpf: '12345678901'
+    }
+
+    const cpf: string ='12345678900';
+
+    const result = await compraService.cadastrar(compraDTO, cpf)
+
+    expect(result.statusCode).toBe(400);
+    expect(result.body).toBe('O cpf fornecido não corresponde com o cpf de seu usuário.');
+  })
+
   it('Deve retornar cashback acumulado', async () => {
     const { compraService, revendedorRepositoryMock  } = sutFactory();
   
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
-      valor: 10, 
+      valor: 10,
+      cpf: '12345678900'
     }
 
     const cpf: string ='12345678900';
@@ -138,6 +160,7 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10, 
+      cpf: 'abc'
     }
 
     const cpf: string ='abc';
@@ -154,7 +177,19 @@ describe('compra', () => {
     const compraDTO: CompraDTO = {
       codigo: 'any_codigo',
       valor: 10, 
+      cpf: '12345678900'
     }
+
+    const lista: Compra[] = [{
+      id: 'any_id',
+      data: 'any_data',
+      codigo: 'any_codigo',
+      valor: 10,
+      status: 'any_status',
+      revendedorId: 'any_id'
+    }]
+
+    compraRepositoryMock.listar.mockResolvedValue(lista)
 
     const cpf: string ='12345678900';
 

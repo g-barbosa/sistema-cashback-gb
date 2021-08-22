@@ -4,4 +4,5 @@ export interface CompraDTO {
   valor: number;
   data?: string;
   status?: string;
+  cpf: string;
 }

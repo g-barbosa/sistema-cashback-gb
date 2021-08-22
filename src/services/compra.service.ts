@@ -8,7 +8,7 @@ import { ICashbackService } from './Interfaces/ICashback.service';
 import { ComprasResponse } from '../domain/DTO/compras.response';
 import { CompraResponse } from '../domain/DTO/compra.response';
 import { BaseResponse } from '../domain/DTO/base.response';
-import { notfound, ok } from '../infra/helpers/http.helpers';
+import { badRequest, notfound, ok } from '../infra/helpers/http.helpers';
 
 export class CompraService implements ICompraService {
     
@@ -19,13 +19,16 @@ export class CompraService implements ICompraService {
         ){}
 
     async cadastrar(DTO: CompraDTO, cpf: string) {
+
+        if (DTO.cpf !== cpf) return badRequest(new Error('O cpf fornecido não corresponde com o cpf de seu usuário.'))
+
         const revendedor: Revendedor = await this.revendedorService.buscarRevendedorPorCPF(cpf)
 
         if (!revendedor) return notfound(new Error('Não foi possível encontrar este revendedor'));
 
         const compra = new Compra({...DTO, revendedorId: revendedor.id});
 
-        if (cpf = '15350946056') compra.status = 'Aprovado';
+        if (cpf === '15350946056') compra.status = 'Aprovado';
 
         await this.repository.cadastrar(compra);
         return ok('Compra cadastrada com sucesso')

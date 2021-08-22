@@ -11,10 +11,10 @@ export class CompraController {
 
     async cadastrar (request: RequestHelper, response: Response): Promise<Response> {
         try {
-            const { codigo, valor  } = request.body
-            const { cpf } = request
+            const { codigo, valor, cpf  } = request.body
+            const { cpf: cpfLogado } = request
             
-            await this.service.cadastrar({ codigo, valor }, cpf!)
+            await this.service.cadastrar({ codigo, valor, cpf }, cpfLogado!)
 
             return response.status(200).send()
 
