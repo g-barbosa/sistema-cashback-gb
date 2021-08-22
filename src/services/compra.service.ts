@@ -34,7 +34,7 @@ export class CompraService implements ICompraService {
         return ok('Compra cadastrada com sucesso')
     }
 
-    async listar(revendedorId: any, mes: string) {
+    async listar(revendedorId: any, mes: any) {
         const compras = await this.repository.listar(revendedorId, mes);
 
         let somaTotal = 0;
