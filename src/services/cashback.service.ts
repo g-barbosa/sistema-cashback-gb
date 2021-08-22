@@ -3,6 +3,7 @@ import axios from 'axios'
 
 export class CashbackService implements ICashbackService {
     private readonly baseURI = process.env.APP_CASHBACK_API
+    private readonly apiToken = process.env.APP_CASHBACK_API_TOKEN
     constructor (){
 
     }
@@ -14,7 +15,7 @@ export class CashbackService implements ICashbackService {
     }
 
     async cashbackAcumulado(cpf: any) {
-      const response = axios.get(`${this.baseURI}${cpf}`)
+      const response = axios.get(`${this.baseURI}${cpf}`, { headers: { 'token': this.apiToken } })
         .then(response => {
           return response.data;
         })

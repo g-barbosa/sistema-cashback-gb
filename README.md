@@ -26,6 +26,7 @@ APP_DB_PASSWORD=suasenha
 APP_DB_CONNECTION=mysql
 
 APP_CASHBACK_API=https://mdaqk8ek5j.execute-api.us-east-1.amazonaws.com/v1/cashback?cpf=
+APP_CASHBACK_API_TOKEN=ZXPURQOARHiMc6Y0flhRC1LVlZQVFRnm
 
 APP_AUTH_SECRET=suachave
 ```
